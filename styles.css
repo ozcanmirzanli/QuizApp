@@ -1,0 +1,29 @@
+.cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(175, 255, 208) !important;
+  min-height: 100vh;
+}
+
+.quiz-card {
+  width: 30rem;
+}
+
+.question-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px;
+}
+
+.quiz-answer-card:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.bg-success,
+.bg-danger {
+  color: white !important;
+}
