@@ -1,4 +1,4 @@
-.cart-container {
+.card-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 13px;
+  padding-top: 13px;
 }
 
 .quiz-answer-card:hover {
@@ -26,4 +26,23 @@
 .bg-success,
 .bg-danger {
   color: white !important;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.final-headline {
+  font-size: 38px;
+  margin-bottom: 32px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
 }

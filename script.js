@@ -40,9 +40,51 @@ let questions = [
     answer_4: "45 minutes",
     correct_answer: 1,
   },
+  {
+    question:
+      "Which animal is known to have the most powerful bite in the animal kingdom?",
+    answer_1: "Great White Shark",
+    answer_2: "African Lion",
+    answer_3: "Saltwater Crocodile",
+    answer_4: "Grizzly Bear",
+    correct_answer: 3,
+  },
+  {
+    question: "What is the primary component of the Sun?",
+    answer_1: "Liquid Lava",
+    answer_2: "Hydrogen",
+    answer_3: "Helium",
+    answer_4: "Iron",
+    correct_answer: 2,
+  },
+  {
+    question: "Which planet is known as the 'Red Planet'?",
+    answer_1: "Venus",
+    answer_2: "Saturn",
+    answer_3: "Mars",
+    answer_4: "Jupiter",
+    correct_answer: 3,
+  },
+  {
+    question: "What is the tallest breed of dog in the world?",
+    answer_1: "Great Dane",
+    answer_2: "German Shepherd",
+    answer_3: "Irish Wolfhound",
+    answer_4: "Mastiff",
+    correct_answer: 1,
+  },
+  {
+    question: "Which country has the most natural lakes?",
+    answer_1: "United States",
+    answer_2: "Finland",
+    answer_3: "Canada",
+    answer_4: "Russia",
+    correct_answer: 3,
+  },
 ];
 
 let currentQuestion = 0;
+let rightQuestions = 0;
 
 function init() {
   document.getElementById("all-questions").innerHTML = `${questions.length}`;
@@ -51,13 +93,31 @@ function init() {
 }
 
 function showQuestion() {
-  let question = questions[currentQuestion];
+  if (currentQuestion >= questions.length) {
+    // Show End Screem
+    document.getElementById("end-screen").style = "";
+    document.getElementById("question-body").style.display = "none";
 
-  document.getElementById("question-text").innerHTML = question["question"];
-  document.getElementById("answer_1").innerHTML = question["answer_1"];
-  document.getElementById("answer_2").innerHTML = question["answer_2"];
-  document.getElementById("answer_3").innerHTML = question["answer_3"];
-  document.getElementById("answer_4").innerHTML = question["answer_4"];
+    document.getElementById("amount-of-questions").innerHTML = questions.length;
+    document.getElementById("right-questions").innerHTML = rightQuestions;
+    document.getElementById("header-image").src = "img/win.png";
+  } else {
+    //Show question
+
+    let percent = (currentQuestion + 1) / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById("progress-bar").innerText = `${percent}%`;
+    document.getElementById("progress-bar").style.width = `${percent}%`;
+
+    let question = questions[currentQuestion];
+
+    document.getElementById("current-question").innerHTML = currentQuestion + 1;
+    document.getElementById("question-text").innerHTML = question["question"];
+    document.getElementById("answer_1").innerHTML = question["answer_1"];
+    document.getElementById("answer_2").innerHTML = question["answer_2"];
+    document.getElementById("answer_3").innerHTML = question["answer_3"];
+    document.getElementById("answer_4").innerHTML = question["answer_4"];
+  }
 }
 
 function answer(selection) {
@@ -68,6 +128,7 @@ function answer(selection) {
 
   if (selectedQuestionNumber == question["correct_answer"]) {
     document.getElementById(selection).parentNode.classList.add("bg-success");
+    rightQuestions++;
   } else {
     document.getElementById(selection).parentNode.classList.add("bg-danger");
     document
@@ -95,4 +156,11 @@ function resetAnswerButtons() {
   document.getElementById("answer_4").parentNode.classList.remove("bg-success");
 }
 
-init();
+function restartQuiz() {
+  document.getElementById("header-image").src = "img/quiz.jpg";
+  document.getElementById("end-screen").style.display = "none";
+  document.getElementById("question-body").style = "";
+  rightQuestions = 0;
+  currentQuestion = 0;
+  init();
+}
